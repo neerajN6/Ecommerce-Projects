@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\frontend",
+    "\\frontend\\src",
+    "\\frontend\\src\\app",
+    "\\frontend\\src\\app\\product-list\\model",
+    "\\frontend\\src\\app\\product-list\\service"
+  ],
+  "SelectedNode": "\\frontend\\src\\app\\cart.service.ts",
+  "PreviewInSolutionExplorer": false
+}
