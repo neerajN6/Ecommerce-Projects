@@ -1,0 +1,43 @@
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+
+section {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.horizontal-timeline .items {
+  border-top: 2px solid #ddd;
+}
+
+  .horizontal-timeline .items .items-list {
+    position: relative;
+    margin-right: 0;
+  }
+
+    .horizontal-timeline .items .items-list:before {
+      content: "";
+      position: absolute;
+      height: 8px;
+      width: 8px;
+      border-radius: 50%;
+      background-color: #ddd;
+      top: 0;
+      margin-top: -5px;
+    }
+
+  .horizontal-timeline .items .items-list {
+    padding-top: 15px;
+  }
+
+.ordered {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 60px;
+}

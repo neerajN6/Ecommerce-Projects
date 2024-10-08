@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transparent Navbar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.7); /* Adjust transparency */
+      backdrop-filter: blur(10px); /* Optional: add blur effect */
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <img style="padding-right: 20px; width: 7%;" src="https://i.postimg.cc/sD0rrvtC/logo-black1.png" />
+      <a class="navbar-brand" href="#">ElectronicPlanet</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="product-list">Products</a>
+          </li>
+          <a class="nav-link active" aria-current="page">Cart</a>
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <section class="h-100 h-custom" style="padding-bottom: 20px; margin-bottom: 40px;" >
+    <div class="container h-100 py-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card shopping-cart" style="border-radius: 15px;">
+            <div class="card-body">
+
+              <div class="row">
+                <div class="col-lg-6 px-5 py-4">
+
+                  <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Your products</h3>
+
+                  <div class="d-flex align-items-center mb-5" *ngFor="let item of cartItems">
+                    <div class="flex-shrink-0">
+                      <img src="{{ item.img_url }}"
+                           class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                      <a href="#!" class="float-end"><i class="fas fa-times"></i></a>
+                      <h5 class="text-primary">{{ item.name }}</h5>
+                      <div class="d-flex align-items-center">
+
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-6">
+                              <p class="fw-bold mb-0 me-5 pe-3">₹{{ item.totalPrice }}</p>
+                            </div>
+                            <div class="col-3">
+                              <input style="width: 75%;" type="number" id="typeNumber" [(ngModel)]="item.quantity" (change)="updateQuantity(item)" class="form-control" />
+                            </div>
+                            <div class="col-3">
+                              <img style="width: 35%; cursor: pointer; margin-right: 100px;" (click)="removeItem(item.id)" src="https://static-00.iconduck.com/assets.00/delete-icon-256x256-9x92mtma.png" />
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+                  <hr class="mb-4" style="height: 2px; background-color: #1266f1; opacity: 1;">
+
+                  <div class="d-flex justify-content-between p-2 mb-2 bg-primary rounded">
+                    <h5 class="fw-bold mb-0 text-light">Total :</h5>
+                    <h5 class="fw-bold mb-0 text-light">₹{{ calculateTotal() }}</h5>
+                  </div>
+
+                </div>
+                <div class="col-lg-6 px-5 py-4">
+
+                  <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Payment</h3>
+
+                  <form class="mb-5">
+
+                    <div data-mdb-input-init class="form-outline mb-5">
+                      <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
+                             value="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                      <label class="form-label" for="typeText">Card Number</label>
+                    </div>
+
+                    <div data-mdb-input-init class="form-outline mb-5">
+                      <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                             value="John Smith" />
+                      <label class="form-label" for="typeName">Name on card</label>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 mb-5">
+                        <div data-mdb-input-init class="form-outline">
+                          <input type="text" id="typeExp" class="form-control form-control-lg" value="01/22"
+                                 size="7" id="exp" minlength="7" maxlength="7" />
+                          <label class="form-label" for="typeExp">Expiration</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-5">
+                        <div data-mdb-input-init class="form-outline">
+                          <input type="password" id="typeText" class="form-control form-control-lg"
+                                 value="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                          <label class="form-label" for="typeText">Cvv</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p class="mb-5">
+                      Hope you enjoyed your shopping experience - <a href="#!">feedback</a>.
+                    </p>
+
+                    <div class="text-center" style="padding-bottom: 30px;">
+
+                      <button (click)="buyNow()" type="button" class="btn btn-primary btn-lg d-block w-100">Buy now</button>
+
+                    </div>
+
+
+
+                    <h5 class="fw-bold mb-5" style="position: absolute; bottom: 0;">
+                      <a href="product-list"><i class="fas fa-angle-left me-2"></i>Back to shopping</a>
+                    </h5>
+
+                  </form>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

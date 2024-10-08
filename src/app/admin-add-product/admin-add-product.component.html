@@ -1,0 +1,69 @@
+<div class="container-sm">
+  <div class="col-md-6-offset-md-3 container-sm">
+    <h2>Add Products</h2>
+    <br /><br />
+    <form #f="ngForm" (ngSubmit)="f.form.valid" class="row g-3 form-container container-sm">
+      <div class="form-group col-12">
+        <label><b>Name</b></label>
+        <input type="text" class="form-control" id="name"
+               minLenth="3" #name="ngModel"
+               [(ngModel)]="product.name" name="name" required
+               [ngClass]="{'is-invalid': f.submitted && name.errors }" />
+        <div *ngIf="f.submitted && name.errors" class="invalid-feedback">
+          <div *ngIf="name.errors['required']">Entering Name is mandatory!</div>
+          <div *ngIf="name.errors['minLength']">Name should have minimum of 3 characters!!</div>
+        </div>
+      </div>
+
+      <div class="form-group col-12">
+        <label><b>Image Url</b></label>
+        <input type="text" class="form-control" id="img_url"
+               [(ngModel)]="product.img_url" name="img_url" required
+               #img_url="ngModel" [ngClass]="{'is-invalid': f.submitted && img_url.errors}" />
+        <div *ngIf="f.submitted && img_url.errors" class="invalid-feedback">
+          <div *ngIf="img_url.errors['required']">Entering Image Url is mandatory!</div>
+        </div>
+      </div>
+
+
+      <br /><br />
+      <div class="form-group col-6">
+        <label><b>Price</b></label>
+        <input type="number" class="form-control" id="price"
+               [(ngModel)]="product.price" name="price" required pattern="^[1-9]\d{2,}$"
+               #price="ngModel" [ngClass]="{'is-invalid': f.submitted && price.invalid}" />
+        <div *ngIf="f.submitted && price.errors" class="invalid-feedback">
+          <div *ngIf="price.errors['required']">Entering price is mandatory!</div>
+        </div>
+      </div>
+
+      <div class="form-group col-6">
+        <label><b>Quantity</b></label>
+        <input type="number" class="form-control" id="quantity"
+               [(ngModel)]="product.quantity" name="quantity"
+               #quantity="ngModel" [ngClass]="{'is-invalid': f.submitted && quantity.invalid}" />
+        <div *ngIf="f.submitted && quantity.errors" class="invalid-feedback">
+          <div *ngIf="quantity.errors['required']">Entering quantity is mandatory!</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label><b>Description (250 characters)</b></label>
+        <textarea maxlength="250" class="form-control" id="description"
+                  [(ngModel)]="product.description" name="description"
+                  #description="ngModel" required
+                  [ngClass]="{'is-invalid': f.submitted && description.invalid}"></textarea>
+        <div *ngIf="f.submitted && description.errors" class="invalid-feedback">
+          <div *ngIf="description.errors['required']">Entering description is mandatory!</div>
+        </div>
+      </div>
+
+
+      <br /><br /><br /><br />
+
+      <div class="form-group col-md-6">
+        <button (click)="onSubmit()" class="btn btn-success full-width-button" id="reg">Add Product</button>
+      </div>
+    </form>
+  </div>
+</div>
